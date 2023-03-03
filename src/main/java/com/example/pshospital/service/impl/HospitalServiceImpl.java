@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @Transactional
@@ -40,6 +41,9 @@ public class HospitalServiceImpl implements HospitalService {
 
     @Override
     public void updateHospitalById(Long id, Hospital hospital) {
-//        hospitalRepository.(id, hospital);
+        Hospital hospital1 = hospitalRepository.findById(id).get();
+        hospital1.setName(hospital.getName());
+        hospital1.setAddress(hospital.getAddress());
+        hospital1.setImage(hospital.getImage());
     }
 }

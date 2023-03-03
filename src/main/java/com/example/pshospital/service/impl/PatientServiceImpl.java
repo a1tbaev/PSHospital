@@ -19,11 +19,8 @@ public class PatientServiceImpl implements PatientService {
     private final PatientRepository patientRepository;
     private final AppointmentRepository appointmentRepository;
     @Override
-    public List<Patient> getAllPatients(Long appointmentId) {
-        Appointment byId = appointmentRepository.findById(appointmentId).get();
-        List<Appointment> appointments = new ArrayList<>();
-        appointments.add(byId);
-        return patientRepository.getPatientsByAppointments(appointments);
+    public Patient getAllPatients(Long appointmentId) {
+        return patientRepository.getPatientByAppointmentId(appointmentId);
     }
 
     @Override
@@ -53,6 +50,11 @@ public class PatientServiceImpl implements PatientService {
 
     @Override
     public void updatePatient(Long patientId, Patient patient) {
-//        patientRepository.updatePatient(patientId, patient);
+        Patient patient1 = patientRepository.findById(patientId).get();
+        patient1.setFirstName(patient.getFirstName());
+        patient1.setLastName(patient.getLastName());
+        patient1.setEmail(patient.getEmail());
+        patient1.setGender(patient.getGender());
+        patient1.setPhoneNumber(patient.getPhoneNumber());
     }
 }

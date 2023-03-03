@@ -13,11 +13,11 @@ import org.springframework.web.bind.annotation.*;
 public class PatientController {
     private final PatientService patientService;
 
-    @GetMapping("{appointmentId}")
-    public String getAllPatients(@PathVariable Long appointmentId, Model model){
-        model.addAttribute("patients", patientService.getAllPatients(appointmentId));
-        return "patientMainPage";
-    }
+//    @GetMapping("{appointmentId}")
+//    public String getAllPatients(@PathVariable Long appointmentId, Model model){
+//        model.addAttribute("patients", patientService.getAllPatients(appointmentId));
+//        return "patientMainPage";
+//    }
     @GetMapping("/new/{appointmentId}")
     public String newPatient(Model model, @PathVariable Long appointmentId) {
         model.addAttribute("newPatient", new Patient());

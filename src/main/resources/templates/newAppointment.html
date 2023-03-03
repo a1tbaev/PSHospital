@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>New Doctor</title>
+</head>
+<body>
+
+</body>
+<form th:method="POST" th:action="@{/appointments/save/{doctorId}(doctorId=${doctorId})}"
+      th:object="${newAppointment}">
+    <div>
+        <label for="name">Name</label>
+        <input type="date" th:field="*{date}" id="name">
+    </div>
+    <button type="submit">save appointment</button>
+</form>
+</html>

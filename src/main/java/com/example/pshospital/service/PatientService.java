@@ -5,7 +5,7 @@ import com.example.pshospital.models.Patient;
 import java.util.List;
 
 public interface PatientService {
-    List<Patient> getAllPatients(Long appointmentId);
+    Patient getAllPatients(Long appointmentId);
     void savePatient(Long appointmentId, Patient newPatient);
     Patient findById(Long patientId);
     void deletePatient(Long patientId, Long appointmentId);

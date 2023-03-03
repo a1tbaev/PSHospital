@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Main page</title>
+</head>
+<body>
+<div  >
+    <table>
+        <thead>
+        <tr>
+            <th>Id</th>
+            <th>Name</th>
+            <th>Last Name</th>
+            <th>Email</th>
+            <th>Gender</th>
+            <th>Phone Number</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="patient:${patients}">
+            <td th:text="${patient.id}"></td>
+            <td th:text="${patient.getFirstName()}"></td>
+            <td th:text="${patient.getLastName()}"></td>
+            <td th:text="${patient.getEmail()}"></td>
+            <td th:text="${patient.getGender()}"></td>
+            <td th:text="${patient.getPhoneNumber()}"></td>
+            <td>
+                <form th:method="DELETE" th:action="@{/patients/{appointmentId}/delete/{patientId}(patientId=${patient.id}, appointmentId=${appointmentId})}">
+                    <input style="background: #ff0000;color: black" type="submit" class="btn btn-outline-primary" th:value="  Delete  "></input>
+                </form>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>
