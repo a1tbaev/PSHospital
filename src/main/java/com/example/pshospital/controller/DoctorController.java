@@ -19,14 +19,14 @@ public class DoctorController {
         return "doctor/doctorsMainPage";
     }
 
-    @GetMapping("/new/{departmentId}")
+    @GetMapping("/newDoctor/{departmentId}")
     public String newDoctor(Model model, @PathVariable("departmentId") Long id){
         model.addAttribute("newDoctor", new Doctor());
         model.addAttribute("departmentId", id);
         return "doctor/newDoctor";
     }
 
-    @PostMapping("/save/{departmentId}")
+    @PostMapping("/saveDoctor/{departmentId}")
     public String saveDoctor(@PathVariable("departmentId") Long id, @ModelAttribute("newDoctor") Doctor doctor){
         doctorService.saveDoctor(doctor, id);
         return "redirect:/doctors/"+ id;
@@ -37,14 +37,14 @@ public class DoctorController {
         return "redirect:/doctors/"+departmentId;
     }
 
-    @GetMapping("/{departmentId}/edit/{id}")
+    @GetMapping("/{departmentId}/editDoctor/{id}")
     public String edit(@PathVariable("id") Long id, @PathVariable("departmentId")Long Id,Model model){
         model.addAttribute("newDoctor", doctorService.getDoctorById(id));
         model.addAttribute("departmentId",Id);
         return "doctor/editDoctor";
     }
 
-    @PatchMapping("/{departmentId}/update/{id}")
+    @PatchMapping("/{departmentId}/updateDoctor/{id}")
     public String update(@PathVariable("id") Long id, @ModelAttribute("newDoctor")Doctor doctor, @PathVariable("departmentId") Long Id){
         doctorService.updateDoctor(doctor, id);
         return "redirect:/doctors/"+Id;

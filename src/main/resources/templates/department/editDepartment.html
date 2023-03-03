@@ -6,7 +6,7 @@
 </head>
 <body>
 <div class="container">
-    <form th:method="PATCH" th:action="@{/departments/{hospitalId}/update/{id}(id=${newDepartment.getId()}, hospitalId = ${hospitalId})}"
+    <form th:method="PATCH" th:action="@{/departments/{hospitalId}/updateDepartment/{id}(id=${newDepartment.getId()}, hospitalId = ${hospitalId})}"
           th:object="${newDepartment}">
         <div>
             <label for="name">Name</label>

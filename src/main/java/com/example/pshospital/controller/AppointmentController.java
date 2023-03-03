@@ -26,7 +26,7 @@ public class AppointmentController {
         appointmentService.deleteAppointments(doctorId, id);
         return "redirect:/appointments/"+doctorId;
     }
-    @GetMapping("/new/{doctorId}")
+    @GetMapping("/newAppointment/{doctorId}")
     public String newAppointment(Model model, @PathVariable("doctorId") Long id){
         model.addAttribute("newAppointment", new Appointment());
         model.addAttribute("newPatient", new Patient());
@@ -34,7 +34,7 @@ public class AppointmentController {
         return "newAppointment";
     }
 
-    @PostMapping("/save/{doctorId}")
+    @PostMapping("/saveAppointment/{doctorId}")
     public String saveAppointment(@ModelAttribute("newPatient") Patient patient, @PathVariable("doctorId") Long id, @ModelAttribute("newAppointment") Appointment appointment){
         appointmentService.saveAppointment(patient, appointment, id);
         return "redirect:/appointments/"+ id;

@@ -7,18 +7,18 @@
 <body>
 <div class="container">
     <form th:method="PATCH"
-          th:action="@{/doctors/{departmentId}/update/{id}(id=${newDoctor.getId()}, departmentId = ${departmentId})}"
+          th:action="@{/doctors/{departmentId}/updateDoctor/{id}(id=${newDoctor.getId()}, departmentId = ${departmentId})}"
           th:object="${newDoctor}">
         <div>
             <label for="name">Name</label>
             <input type="text" th:field="*{firstName}" id="name">
         </div>
         <div>
-            <label for="name">Name</label>
+            <label for="name">Surname</label>
             <input type="text" th:field="*{lastName}" id="lastName">
         </div>
         <div>
-            <label for="name">Name</label>
+            <label for="name">Position</label>
             <input type="text" th:field="*{position}" id="position">
         </div>
         <button type="submit">save</button>

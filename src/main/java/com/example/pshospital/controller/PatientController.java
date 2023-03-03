@@ -13,25 +13,25 @@ import org.springframework.web.bind.annotation.*;
 public class PatientController {
     private final PatientService patientService;
 
-//    @GetMapping("{appointmentId}")
-//    public String getAllPatients(@PathVariable Long appointmentId, Model model){
-//        model.addAttribute("patients", patientService.getAllPatients(appointmentId));
-//        return "patientMainPage";
-//    }
-    @GetMapping("/new/{appointmentId}")
+    @GetMapping("/{appointmentId}")
+    public String getAllPatients(@PathVariable Long appointmentId, Model model){
+        model.addAttribute("patients", patientService.getAllPatients(appointmentId));
+        return "patientMainPage";
+    }
+    @GetMapping("/newPatient/{appointmentId}")
     public String newPatient(Model model, @PathVariable Long appointmentId) {
         model.addAttribute("newPatient", new Patient());
         model.addAttribute("appointmentId", appointmentId);
         return "newPatient";
     }
 
-    @PostMapping("/save/{appointmentId}")
+    @PostMapping("/savePatient/{appointmentId}")
     public String savePatient(@ModelAttribute("newPatient") Patient patient, @PathVariable Long appointmentId) {
         patientService.savePatient(appointmentId, patient);
         return "redirect:/patients/"+appointmentId;
     }
 
-    @DeleteMapping("{appointmentId}/delete/{patientId}")
+    @DeleteMapping("{appointmentId}/deletePatient/{patientId}")
     public String deletePatient(@PathVariable Long patientId, @PathVariable Long appointmentId){
         patientService.deletePatient(patientId, appointmentId);
         return "redirect:/patients/"+appointmentId;

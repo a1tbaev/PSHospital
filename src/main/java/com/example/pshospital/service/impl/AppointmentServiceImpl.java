@@ -1,11 +1,10 @@
 package com.example.pshospital.service.impl;
 
-import com.example.pshospital.models.Appointment;
-import com.example.pshospital.models.Doctor;
-import com.example.pshospital.models.Hospital;
-import com.example.pshospital.models.Patient;
+import com.example.pshospital.models.*;
 import com.example.pshospital.repository.AppointmentRepository;
+import com.example.pshospital.repository.DepartmentRepository;
 import com.example.pshospital.repository.DoctorRepository;
+import com.example.pshospital.repository.HospitalRepository;
 import com.example.pshospital.service.AppointmentService;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
@@ -20,12 +19,18 @@ import java.util.Optional;
 @Transactional
 public class AppointmentServiceImpl implements AppointmentService {
     private final AppointmentRepository appointmentRepository;
+    private final DepartmentRepository departmentRepository;
     private final DoctorRepository doctorRepository;
+    private final HospitalRepository hospitalRepository;
     @Override
     public void saveAppointment(Patient patient, Appointment appointment, Long id) {
         Doctor doctor = doctorRepository.findById(id).get();
+        Hospital hospitalByDoctorId = hospitalRepository.getHospitalByDoctorId(id);
+        Department departmentByDoctorId = departmentRepository.findDepartmentByDoctorId(id);
         appointmentRepository.save(appointment);
-        doctor.addAppointment(appointment);
+        hospitalByDoctorId.addAppointment(appointment);
+        appointment.setDoctor(doctor);
+        appointment.setDepartment(departmentByDoctorId);
     }
 
     @Override

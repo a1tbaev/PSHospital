@@ -25,8 +25,8 @@
                 <form th:method="DELETE" th:action="@{/appointments/{doctorId}/deleteAppointment/{appointmentId}(doctorId=${doctorId}, appointmentId=${appointment.id})}">
                     <input style="background: #ff0000;color: black" type="submit" class="btn btn-outline-primary" th:value="  Delete  "></input>
                 </form>
-                <a th:href="@{/patients/new/{appId}(appId=${appointment.id})}">
-                    <button type="button">Add</button>
+                <a th:href="@{/patients/newPatient/{appId}(appId=${appointment.id})}">
+                    <button type="button">Add p</button>
                 </a>
                 <a th:href="@{/patients/{appId}(appId=${appointment.id})}">
                     <button type="button">info</button>
@@ -37,7 +37,7 @@
     </table>
 </div>
 <p style="text-align:center;">
-    <a class="btn btn-outline-primary" role="button" th:href="@{/appointments/new/{id}(id=${doctorId})}">Add new appointment</a>
+    <a class="btn btn-outline-primary" role="button" th:href="@{/appointments/newAppointment/{id}(id=${doctorId})}">Add new appointment</a>
 </p>
 </body>
 </html>

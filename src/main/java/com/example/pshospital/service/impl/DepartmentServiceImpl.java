@@ -24,7 +24,8 @@ public class DepartmentServiceImpl implements DepartmentService {
     @Override
     public Department save(Department department, Long id) {
         Department save = departmentRepo.save(department);
-        hospitalRepository.findById(id).get().addDepartment(save);
+        Hospital hospital = hospitalRepository.findById(id).get();
+        save.setHospital(hospital);
         return save;
     }
 

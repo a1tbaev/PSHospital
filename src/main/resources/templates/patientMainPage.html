@@ -26,7 +26,7 @@
             <td th:text="${patient.getGender()}"></td>
             <td th:text="${patient.getPhoneNumber()}"></td>
             <td>
-                <form th:method="DELETE" th:action="@{/patients/{appointmentId}/delete/{patientId}(patientId=${patient.id}, appointmentId=${appointmentId})}">
+                <form th:method="DELETE" th:action="@{/patients/{appointmentId}/deletePatient/{patientId}(patientId=${patient.id}, appointmentId=${appointmentId})}">
                     <input style="background: #ff0000;color: black" type="submit" class="btn btn-outline-primary" th:value="  Delete  "></input>
                 </form>
             </td>

@@ -13,20 +13,20 @@ import org.springframework.web.bind.annotation.*;
 public class DepartmentController {
     private final DepartmentService departmentService;
 
-    @GetMapping("{hospitalId}")
+    @GetMapping("/{hospitalId}")
     public String getAllDepartments(Model model, @PathVariable("hospitalId") Long id){
         model.addAttribute("departments", departmentService.getAll(id));
         return "department/departmentMainPage";
     }
 
-    @GetMapping("/new/{hospitalId}")
+    @GetMapping("/newDepartment/{hospitalId}")
     public String newDepartment(Model model, @PathVariable("hospitalId") Long id){
         model.addAttribute("newDepartment", new Department());
         model.addAttribute("hospitalId", id);
         return "department/newDepartment";
     }
 
-    @PostMapping("/save/{hospitalId}")
+    @PostMapping("/saveDepartment/{hospitalId}")
     public String saveHospital(@PathVariable("hospitalId") Long id, @ModelAttribute("newDepartment") Department department){
         departmentService.save(department, id);
         return "redirect:/departments/"+ id;
@@ -38,14 +38,14 @@ public class DepartmentController {
         return "redirect:/departments/"+hospitalId;
     }
 
-    @GetMapping("/{hospitalId}/edit/{id}")
+    @GetMapping("/{hospitalId}/editDepartment/{id}")
     public String edit(@PathVariable("id") Long id, @PathVariable("hospitalId")Long hospitalId,Model model){
         model.addAttribute("newDepartment", departmentService.getById(id));
         model.addAttribute("hospitalId",hospitalId);
         return "department/editDepartment";
     }
 
-    @PatchMapping("/{hospitalId}/update/{id}")
+    @PatchMapping("/{hospitalId}/updateDepartment/{id}")
     public String update(@PathVariable("id") Long id, @ModelAttribute("newDepartment") Department department, @PathVariable("hospitalId") Long hospitalId){
         departmentService.update(id, department);
         return "redirect:/departments/"+hospitalId;

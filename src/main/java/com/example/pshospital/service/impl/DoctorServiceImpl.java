@@ -7,6 +7,7 @@ import com.example.pshospital.models.Hospital;
 import com.example.pshospital.repository.AppointmentRepository;
 import com.example.pshospital.repository.DepartmentRepository;
 import com.example.pshospital.repository.DoctorRepository;
+import com.example.pshospital.repository.HospitalRepository;
 import com.example.pshospital.service.DoctorService;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
@@ -20,6 +21,7 @@ public class DoctorServiceImpl implements DoctorService {
     private final DepartmentRepository departmentRepository;
     private final DoctorRepository doctorRepository;
     private final AppointmentRepository appointmentRepository;
+    private final HospitalRepository hospitalRepository;
     @Override
     public List<Doctor> getAllDoctors(Long departmentId) {
         return departmentRepository.findById(departmentId).get().getDoctors();
@@ -29,7 +31,8 @@ public class DoctorServiceImpl implements DoctorService {
     public void saveDoctor(Doctor doctor, Long departmentId) {
         Department department = departmentRepository.findById(departmentId).get();
         doctorRepository.save(doctor);
-        department.addDoctor(doctor);
+        doctor.setHospital(hospitalRepository.findHospitalByDepartmentId(departmentId));
+        doctor.addDepartment(department);
     }
 
     @Override

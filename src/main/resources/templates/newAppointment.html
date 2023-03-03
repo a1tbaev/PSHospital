@@ -7,7 +7,7 @@
 <body>
 
 </body>
-<form th:method="POST" th:action="@{/appointments/save/{doctorId}(doctorId=${doctorId})}"
+<form th:method="POST" th:action="@{/appointments/saveAppointment/{doctorId}(doctorId=${doctorId})}"
       th:object="${newAppointment}">
     <div>
         <label for="name">Name</label>
